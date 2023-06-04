@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+.heroBackground {
+    background-image: url('./data/images/hero.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.clothing {
+    background-image: url('./data/images/clothing.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.shoes {
+    background-image: url('./data/images/shoes.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.accessories {
+    background-image: url('./data/images/accessories.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.sales{
+    background-image: url('./data/images/sales.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
