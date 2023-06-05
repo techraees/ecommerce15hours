@@ -4,6 +4,7 @@ import Content from "./sub/Content";
 import Sales from "./sub/Sales";
 import PopularProducts from "./sub/PopularProducts";
 import Brand from "./sub/Brand";
+import MetaData from "../Layout/MetaData";
 
 const Body = () => {
   const nestedComponentRef = useRef(false);
@@ -15,6 +16,7 @@ const Body = () => {
   };
   return (
     <div>
+      <MetaData title={"Ecommerce: Home"} />
       <Hero onClick={scrollToNestedComponent} />
       <Content />
       <Sales />

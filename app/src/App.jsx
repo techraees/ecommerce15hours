@@ -8,6 +8,7 @@ import AllProducts from "./components/Home/Products/AllProducts.jsx";
 import SingleProduct from "./components/Home/SingleProducts/SingleProduct";
 
 import "./App.css";
+import axios from "axios";
 
 function App() {
   useEffect(() => {
