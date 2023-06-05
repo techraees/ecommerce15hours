@@ -1,14 +1,14 @@
 import React from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 
-import Logo from "../../../data/images/logo.svg";
-import Bag from "../../../data/images/bag.svg";
-import Heart from "../../../data/images/heart.svg";
-import User from "../../../data/images/user.svg";
+import Logo from "../../../../data/images/logo.svg";
+import Bag from "../../../../data/images/bag.svg";
+import Heart from "../../../../data/images/heart.svg";
+import User from "../../../../data/images/user.svg";
 
 const Header = () => {
   return (
-    <div className="bg-[white] fixed top-[0px] w-[100%] z-[900] hover:shadow-[0px_5px_30px_rgba(0,0,0,0.15)] ">
+    <div className="bg-[white] sticky top-[0px] w-[100%] z-[900] hover:shadow-[0px_5px_30px_rgba(0,0,0,0.15)] ">
       <header className=" w-full  border-b-[1px] border-solid border-[#ebebeb] h-[85.8px]">
         <div className="flex justify-between ">
           <nav className="flex h-20 p-1.5 pl-20 items-center w-[50%]">
