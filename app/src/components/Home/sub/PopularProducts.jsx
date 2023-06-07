@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
-import Product from "./Product";
 import { useSelector, useDispatch } from "react-redux";
-import { getProduct } from "../../../redux/actions/productAction";
+import { toast } from "react-toastify";
+
+import Product from "./Product";
+import {
+  getProduct,
+  getProductDetails,
+} from "../../../redux/actions/productAction";
+import Loader from "../../Layout/Loader/Loader";
 
 const PopularProducts = React.forwardRef((props, ref) => {
   const dispatch = useDispatch();
@@ -10,12 +16,16 @@ const PopularProducts = React.forwardRef((props, ref) => {
     (state) => state.products
   );
   useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
     dispatch(getProduct());
-  }, [dispatch]);
+    dispatch(getProductDetails("647ddbb982136d12a97d4214"));
+  }, [dispatch, error, toast, alert]);
 
-  const handle = () => {
-    console.log(props);
-  };
   const options = {
     edit: false,
     count: 5,
@@ -32,12 +42,17 @@ const PopularProducts = React.forwardRef((props, ref) => {
           <h2 className="text-[30px] font-[700]">Popular Products</h2>
         </div>
       </div>
-
-      <div className="container flex flex-wrap justify-between w-[1140px]  mx-auto">
-        {products &&
-          products.map((product, index) => (
-            <Product product={product} key={index} />
-          ))}
+      <div className="flex flex-wrap justify-between w-[1140px]  mx-auto h-[100%]">
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="flex flex-wrap justify-center justify-evenly w-[1140px]  mx-auto ">
+            {products &&
+              products.map((product, index) => (
+                <Product product={product} key={index} />
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );

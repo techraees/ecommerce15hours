@@ -6,7 +6,7 @@
     scroll-behavior: smooth;
 }
 body{
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ubuntu';
 }
 .heroBackground {
     background-image: url('./data/images/hero.webp');
