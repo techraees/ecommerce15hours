@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "../../../../data/images/profile.png";
+import Profile from "../../../data/images/profile.png";
 import RatingsStars from "react-rating-stars-component";
 import Tooltip from "@mui/material/Tooltip";
 
@@ -24,7 +24,7 @@ const ReviewCard = ({ review }) => {
         <RatingsStars {...options} />
       </div>
       <Tooltip title={review.comment}>
-        <span className="line-clamp-5 text-[rgba(0,0,0,0.445)] text-left font-[300] text-[0.8vmax] font-['Poppins']">
+        <span className=" text-[rgba(0,0,0,0.445)] self-start font-[300] text-[0.8vmax] font-['Poppins']">
           {review.comment}
         </span>
       </Tooltip>

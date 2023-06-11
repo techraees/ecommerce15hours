@@ -1,10 +1,11 @@
 import React from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 
-import Logo from "../../../../data/images/logo.svg";
-import Bag from "../../../../data/images/bag.svg";
-import Heart from "../../../../data/images/heart.svg";
-import User from "../../../../data/images/user.svg";
+import Logo from "../../../data/images/logo.svg";
+import Bag from "../../../data/images/bag.svg";
+import Heart from "../../../data/images/heart.svg";
+import User from "../../../data/images/user.svg";
+import Search from "./Search";
 
 const Header = () => {
   return (
@@ -35,17 +36,11 @@ const Header = () => {
               <Logo />
             </NavLink> */}
           </nav>
-          <div className="flex  justify-end">
-            <div className="border-[1px] border-solid border-[#ebebeb]">
-              <NavLink to="/">
-                <input
-                  type="text"
-                  placeholder="Type for Search"
-                  className="outline-none h-[85px] border-b-[1px] border-[#ebebeb] border-solid w-[400px] pl-[60px] pr-[15px]"
-                />
-              </NavLink>
+          <div className="flex justify-end">
+            <div className="border-l-[1px] border-solid border-[#ebebeb] relative">
+              <Search />
             </div>
-            <div className="border-1-[1px] border-solid border-[#ebebeb] w-[90px]  h-[85px] ">
+            <div className="border-l-[1px] border-solid border-l-[#ebebeb] w-[90px]  h-[85px]">
               <NavLink to="/wishlist" className="">
                 <img
                   src={Heart}

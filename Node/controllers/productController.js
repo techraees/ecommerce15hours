@@ -17,26 +17,50 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Get all Product
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
-  const resultPerPage = 8;
+  const resultPerPage = 6;
   const productsCount = await Product.countDocuments();
 
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
-    .filter()
-    .pagination(resultPerPage);
+    .filter();
+  /** this is my code */
+  // let products = await apiFeature.query;
+
+  // let filteredProductsCount = products.length;
+
+  // apiFeature.pagination(resultPerPage);
+
+  // products = await apiFeature.query;
+
+  /** This is ChatGPT Code */
+
+  const filteredProductsCountQuery = apiFeature.query.model.countDocuments();
+  apiFeature.pagination(resultPerPage);
   const products = await apiFeature.query;
+
+  const productsCounta = await Product.countDocuments();
+
+  // Calculate the filtered products count for the current page
+  const currentPageCount = products.length;
+
+  const filteredProductsCount =
+    currentPageCount < resultPerPage
+      ? resultPerPage * (apiFeature.queryStr.page - 1) + currentPageCount
+      : await filteredProductsCountQuery;
 
   res.status(200).json({
     products,
     success: true,
+
     productsCount,
+    resultPerPage,
+    filteredProductsCount,
   });
 });
 
 // Get Product Details
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById("64807496d4ddeebd02f69d8d");
-  console.log(product);
+  const product = await Product.findById("64821502c18c26f67de12e94");
   if (!product) {
     return next(new ErrorHandler("Product Not Found", 404));
   }

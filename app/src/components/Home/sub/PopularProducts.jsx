@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 import Product from "./Product";
 import {
+  clearErrors,
   getProduct,
   getProductDetails,
 } from "../../../redux/actions/productAction";
@@ -20,10 +21,10 @@ const PopularProducts = React.forwardRef((props, ref) => {
       toast.error(error, {
         position: toast.POSITION.TOP_RIGHT,
       });
-      return;
+      dispatch(clearErrors());
     }
     dispatch(getProduct());
-    dispatch(getProductDetails("647ddbb982136d12a97d4214"));
+    dispatch(getProductDetails());
   }, [dispatch, error, toast, alert]);
 
   const options = {

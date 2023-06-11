@@ -1,13 +1,13 @@
 import React from "react";
-import { Grid } from "react-loader-spinner";
+import { InfinitySpin } from "react-loader-spinner";
 
 const Loader = () => {
   return (
-    <div className="flex justify-center items-center h-[100%] w-[100%] bg-[rgba(0,0,0,0.01)]">
-      <Grid
-        height="40"
-        width="40"
-        color="#787878"
+    <div className="flex justify-center items-center h-[42vmax] w-[50vmax] bg-[rgba(0,0,255,0.01)]">
+      <InfinitySpin
+        height="200"
+        width="200"
+        color="#00a"
         ariaLabel="grid-loading"
         radius="12.5"
         wrapperStyle={{}}

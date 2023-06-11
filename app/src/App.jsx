@@ -5,10 +5,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Home from "./components/Home/Home";
-import Footer from "./components/Layout/Footer/section/Footer.jsx";
-import Header from "./components/Layout/Header/section/Header.jsx";
-import AllProducts from "./components/Home/Products/AllProducts.jsx";
-import SingleProduct from "./components/Home/SingleProducts/SingleProduct";
+import Footer from "./components/Layout/Footer/Footer.jsx";
+import Header from "./components/Layout/Header/Header.jsx";
+import AllProducts from "./components/Products/AllProducts/AllProducts";
+import ProductDetails from "./components/Products/ProductDetails/ProductDetails";
 
 import "./App.css";
 import axios from "axios";
@@ -26,8 +26,9 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/allproducts" element={<AllProducts />} />
-        <Route path="/product/:id" element={<SingleProduct />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/products/" element={<AllProducts />} />
+        <Route path="/products/:keyword" element={<AllProducts />} />
       </Routes>
       <Footer />
       <ToastContainer />

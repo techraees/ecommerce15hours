@@ -15,7 +15,7 @@ const BodySales = () => {
                 Global Sale
               </h2>
               <Link
-                to="#"
+                to="/products"
                 className="bg-[#0315ff] px-[40px] text-[12px] text-white w-[50%] h-[50px] block pt-[15px] text-center font-[700] hover:bg-[#dc0345] ease-out duration-500"
               >
                 BUY NOW
