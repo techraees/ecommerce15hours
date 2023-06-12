@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import "./Product.css";
 import img from "../../../data/images/filterBackground.webp";
-import Sidebar from "./sub/ProductSidebar.jsx";
+import ProductSidebar from "./sub/ProductSidebar.jsx";
 import Products from "./sub/Products.jsx";
 
 const Product = () => {
   const [price, setPrice] = useState([0, 2500]);
+  const [category, setCategory] = useState(null);
   const handlePrice = (data) => {
     setPrice(data);
+  };
+  const handleCategory = (data) => {
+    setCategory(data);
+  };
+  const sendingCategory = (data) => {
+    return typeof data === "string" ? data.toLowerCase() : data;
   };
   return (
     <div>
@@ -21,8 +28,11 @@ const Product = () => {
         </div>
       </div>
       <div className="py-[80px]  w-[1110px] m-auto flex justify-between">
-        <Sidebar parentFunc={handlePrice} />
-        <Products price={price} />
+        <ProductSidebar
+          parentFunc={handlePrice}
+          categoryParentFunc={handleCategory}
+        />
+        <Products price={price} category={sendingCategory(category)} />
       </div>
     </div>
   );

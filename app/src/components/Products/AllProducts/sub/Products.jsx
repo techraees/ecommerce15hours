@@ -15,10 +15,8 @@ import {
 import Loader from "../../../Layout/Loader/Loader";
 import Product from "../../../Home/sub/Product";
 
-const Products = ({ price }) => {
+const Products = ({ price, category }) => {
   // Passing Data
-  console.log(price);
-
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -35,18 +33,12 @@ const Products = ({ price }) => {
     resultPerPage,
     filteredProductsCount,
   } = useSelector((state) => state.products);
-  console.log(
-    products,
-    loading,
-    resultPerPage,
-    productsCount,
-    filteredProductsCount
-  );
+
   const { keyword } = useParams();
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage, price));
+    dispatch(getProduct(keyword, currentPage, price, category));
     dispatch(getProductDetails());
-  }, [dispatch, keyword, currentPage, price]);
+  }, [dispatch, keyword, currentPage, price, category]);
 
   return (
     <div>
@@ -61,9 +53,7 @@ const Products = ({ price }) => {
                 &nbsp; PRODUCTS FOUND
               </p>
             </div>
-            {price.map((p) => (
-              <p>{p}</p>
-            ))}
+
             <div className="sorting flex justify-between items-center">
               <p>SORT BY: </p>
               <div className="text-[14px] font-[400] cursor-pointer">

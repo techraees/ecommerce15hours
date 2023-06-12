@@ -58,12 +58,11 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
   },
 }));
 
-export default function Price(props) {
-  const [Price, setPrice] = useState([0, 2500]);
-
+export default function Price({ newPrice }) {
+  const [price, setPrice] = useState([0, 2500]);
   const handleChange = (event, value) => {
     setPrice(value);
-    props.newPrice(value);
+    newPrice(value);
   };
 
   return (
@@ -72,7 +71,7 @@ export default function Price(props) {
         Price
       </Typography>
       <IOSSlider
-        value={Price}
+        value={price}
         onChange={handleChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
@@ -85,9 +84,9 @@ export default function Price(props) {
         max={2500}
       />
       <Typography variant="body2" gutterBottom>
-        <EditableContent value={Price[0]} />
+        <EditableContent value={price[0]} />
         <span className="px-[10px]">-</span>
-        <EditableContent value={Price[1]} />
+        <EditableContent value={price[1]} />
       </Typography>
     </Box>
   );

@@ -12,17 +12,20 @@ import {
 
 // Get All Products
 export const getProduct =
-  (keyword = "", currentPage = 1, price = [0, 2500]) =>
+  (keyword = "", currentPage = 1, price = [0, 2500], category) =>
   async (dispatch) => {
     try {
+      // console.log(category);
       dispatch({ type: ALL_PRODUCTS_REQUEST });
-
-      let bug = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
 
       let url = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
 
+      if (category) {
+        url = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`;
+      }
+      console.log(url);
+
       const { data } = await axios.get(url);
-      console.log(data);
       dispatch({ type: ALL_PRODUCTS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
