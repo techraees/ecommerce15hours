@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import { Routes, Route, NavLink } from "react-router-dom";
 
 import Logo from "../../../data/images/logo.svg";
@@ -8,8 +9,39 @@ import User from "../../../data/images/user.svg";
 import Search from "./Search";
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="bg-[white] sticky top-[0px] w-[100%] z-[900] hover:shadow-[0px_5px_30px_rgba(0,0,0,0.15)] ">
+    <div
+      className={
+        isScrolled
+          ? "bg-[white] sticky top-[0px] w-[100%] z-[900] shadow-[0px_5px_30px_rgba(0,0,0,0.15)] duration-500 "
+          : "bg-[white] sticky top-[0px] w-[100%] z-[900] duration-500"
+      }
+    >
       <header className=" w-full  border-b-[1px] border-solid border-[#ebebeb] h-[85.8px]">
         <div className="flex justify-between ">
           <nav className="flex h-20 p-1.5 pl-20 items-center w-[50%]">

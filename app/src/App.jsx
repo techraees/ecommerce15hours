@@ -9,6 +9,7 @@ import Footer from "./components/Layout/Footer/Footer.jsx";
 import Header from "./components/Layout/Header/Header.jsx";
 import AllProducts from "./components/Products/AllProducts/AllProducts";
 import ProductDetails from "./components/Products/ProductDetails/ProductDetails";
+import ScrollButton from "./components/Home/ScrollButton";
 
 import "./App.css";
 import axios from "axios";
@@ -32,6 +33,7 @@ function App() {
       </Routes>
       <Footer />
       <ToastContainer />
+      <ScrollButton />
     </div>
   );
 }
