@@ -26,7 +26,7 @@ const Product = (props) => {
 
   return (
     <div>
-      <div className="flex flex-col mb-[50px] mr-[0px] h-[550px] m-auto bg-[#fff] transition-all hover:drop-shadow-[0px_0px_5px_rgba(0,0,0,0.3)] hover:scale-105">
+      <div className="flex flex-col mr-[0px] h-[550px] mb-[50px] m-auto bg-[#fff] transition-all border-[1px] border-solid border-[#eee] hover:drop-shadow-[0px_0px_5px_rgba(0,0,0,0.3)] hover:scale-105">
         <div>
           <div
             className={`w-[255px] bg-[url(${images[0].url})] bg-cover h-[348px] relative hover:bg-[url(${images[1].url})]`}
@@ -37,7 +37,7 @@ const Product = (props) => {
             <div className="absolute text-[12px] font-[700] bg-[#fff] text-[black] px-[10px] leading-[25px] top-[20px] right-[20px]  hover:bg-[#E6E6FA]">
               <span>Hrt</span>
             </div>
-            <div className="hover-content absolute left-[20px] right-[20px] bottom-[20px] bg-[#FFC0CB] text-center text-[white]">
+            <div className="absolute left-[20px] right-[20px] bottom-[20px] bg-[#FFC0CB] text-center text-[white]">
               <div className="hover:hidden">
                 <Link
                   to="add-cart"
@@ -48,37 +48,41 @@ const Product = (props) => {
               </div>
             </div>
           </div>
-          <div className="content pt-[5px] px-[15px]">
-            <div className="flex items-center">
+          <div className="pt-[5px] px-[15px]">
+            <div className="flex items-center justify-center">
               <span className="mr-[10px] font-[300]">{ratings}</span>
               <span>
                 <Stars {...options} />
               </span>
-              <span className="font-[200]">({numOfReviews} Reviews)</span>
+              <span className="font-[200] ml-[10px]">
+                ({numOfReviews} Reviews)
+              </span>
             </div>
-            <span className="text-[10px] block mb-[10px] uppercase">
-              {category}
-            </span>
-            <Link to={`/product/${_id}`}>
-              <h6 className="leading-[1.3rem] mb-[10px] font-[700] w-[220px] h-[60px] overflow-hidden font-['Ubantu'] ">
-                {name}
-              </h6>
-            </Link>
-            <p className="font-[700] leading-[2rem] text-[rgb(15,17,17)] font-['Montserrat']">
-              <span className="text-[14px] font-[500] leading-[2rem] text-[#f00] line-through mr-[10px]">
-                $79.00
+            <div className="ml-[6px]">
+              <span className="text-[10px] block mb-[10px] uppercase">
+                {category}
               </span>
-              <span className="relative">
-                <span className="text-[13px] mr-[3px] absolute top-[-15px]">
-                  $
+              <Link to={`/product/${_id}`}>
+                <h6 className="leading-[1.3rem] mb-[10px] font-[700] w-[220px] h-[60px] overflow-hidden font-['Ubantu'] ">
+                  {name}
+                </h6>
+              </Link>
+              <p className="font-[700] leading-[2rem] text-[rgb(15,17,17)] font-['Montserrat']">
+                <span className="text-[14px] font-[500] leading-[2rem] text-[#f00] line-through mr-[10px]">
+                  $79.00
                 </span>
-                <span className="text-[28px] ml-[12px]">{price}</span>
-                <span className="text-[13px] absolute top-[-15px] opacity-[0]">
-                  .
+                <span className="relative">
+                  <span className="text-[13px] mr-[3px] absolute top-[-15px]">
+                    $
+                  </span>
+                  <span className="text-[28px] ml-[12px]">{price}</span>
+                  <span className="text-[13px] absolute top-[-15px] opacity-[0]">
+                    .
+                  </span>
+                  <span className="text-[13px] absolute top-[-15px]">00</span>
                 </span>
-                <span className="text-[13px] absolute top-[-15px]">00</span>
-              </span>
-            </p>
+              </p>
+            </div>
           </div>
         </div>
       </div>

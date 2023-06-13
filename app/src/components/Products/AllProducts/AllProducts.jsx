@@ -6,16 +6,24 @@ import Products from "./sub/Products.jsx";
 
 const Product = () => {
   const [price, setPrice] = useState([0, 2500]);
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState("all");
+  const [ratings, setRatings] = useState([0, 5]);
   const handlePrice = (data) => {
     setPrice(data);
   };
+
   const handleCategory = (data) => {
     setCategory(data);
   };
+
   const sendingCategory = (data) => {
     return typeof data === "string" ? data.toLowerCase() : data;
   };
+
+  const handleRatings = (data) => {
+    setRatings(data);
+  };
+
   return (
     <div>
       <div className={`bg-[url(${img})]  w-[100%] h-[140px] `}>
@@ -31,8 +39,13 @@ const Product = () => {
         <ProductSidebar
           parentFunc={handlePrice}
           categoryParentFunc={handleCategory}
+          handleRatings={handleRatings}
         />
-        <Products price={price} category={sendingCategory(category)} />
+        <Products
+          price={price}
+          category={sendingCategory(category)}
+          ratingsArray={ratings}
+        />
       </div>
     </div>
   );

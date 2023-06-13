@@ -15,12 +15,12 @@ import {
 import Loader from "../../../Layout/Loader/Loader";
 import Product from "../../../Home/sub/Product";
 
-const Products = ({ price, category }) => {
+const Products = ({ price, category, ratingsArray }) => {
   // Passing Data
   const dispatch = useDispatch();
-
   const [currentPage, setCurrentPage] = useState(1);
 
+  console.log(ratingsArray);
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
@@ -36,16 +36,16 @@ const Products = ({ price, category }) => {
 
   const { keyword } = useParams();
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage, price, category));
+    dispatch(getProduct(keyword, currentPage, price, category, ratingsArray));
     dispatch(getProductDetails());
-  }, [dispatch, keyword, currentPage, price, category]);
+  }, [dispatch, keyword, currentPage, price, category, ratingsArray]);
 
   return (
     <div>
       {loading ? (
         <Loader />
       ) : (
-        <div className=" w-[855px] bg-[wh ite]">
+        <div className=" w-[855px] bg-[white]">
           <div className="px-[15px] w-[100%] flex justify-between items-center mb-[40px] text-[12px] font-[600]">
             <div className="total">
               <p className=" tracking-[0.75px]">
@@ -61,7 +61,7 @@ const Products = ({ price, category }) => {
               </div>
             </div>
           </div>
-          <div className="container flex flex-wrap  justify-between w-[100%] mx-auto">
+          <div className="flex flex-wrap gap-y-4 justify-between w-[100%] mx-auto">
             {products &&
               products.map((product, index) => (
                 <Product product={product} key={index} />

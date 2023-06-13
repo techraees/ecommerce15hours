@@ -17,7 +17,9 @@ const Color = () => {
   ];
   return (
     <div className="mb-[50px]">
-      <div className="mb-[30px] font-[700]">Color</div>
+      <div className="mb-[15px] font-[700] text-[16px] text-blue-500">
+        Color
+      </div>
       <div className="flex flex-wrap justify-between">
         {colors.map((item, index) => (
           <Link

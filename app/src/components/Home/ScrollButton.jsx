@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ChevronUpIcon from "@mui/icons-material/ExpandLess";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,15 +28,16 @@ const Header = () => {
   };
 
   return (
-    <div className=" fixed bottom-[60px] right-[60px]">
-      {isScrolled && (
-        <button
-          className="bg-red-600 hover:bg-red-300 hover:duration-300 w-[10px] rotate-[270deg] text-white font-bold py-2 px-4 rounded"
-          onClick={scrollToTop}
-        >
-          <ArrowForwardIosIcon />
-        </button>
-      )}
+    <div className="bg-[#000]">
+      <button
+        className={`fixed bottom-[60px] right-[60px] rounded-fill duration-500 transition-opacity ${
+          isScrolled ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ backgroundColor: "#f00" }}
+        onClick={scrollToTop}
+      >
+        <ChevronUpIcon style={{ fontSize: 36, color: "white" }} />
+      </button>
     </div>
   );
 };

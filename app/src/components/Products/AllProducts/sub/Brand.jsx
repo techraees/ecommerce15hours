@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 const Brand = () => {
   return (
     <div className="mb-[50px]">
-      <div className="mb-[15px] font-[700]">BRANDS</div>
-      <div>
+      <div className="mb-[15px] font-[700] text-[16px] text-blue-500">
+        BRANDS
+      </div>
+      <div className="ml-[10px]">
         <ul className={" mb-[15px] "} id="clothing">
           <li className="text-[#787878] mb-[5px] text-[14px] font-[300]">
             <Link to="#">ASOS</Link>

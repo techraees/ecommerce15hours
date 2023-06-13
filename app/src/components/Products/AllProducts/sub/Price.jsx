@@ -66,11 +66,14 @@ export default function Price({ newPrice }) {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ marginBottom: "20px" }}>
       <Typography gutterBottom style={{ marginBottom: "15px" }}>
-        Price
+        <h3 className="mb-[15px] font-[700] text-[16px] text-blue-500">
+          Price
+        </h3>
       </Typography>
       <IOSSlider
+        style={{ marginLeft: "10px", marginRight: "10px", width: "210px" }}
         value={price}
         onChange={handleChange}
         valueLabelDisplay="auto"
