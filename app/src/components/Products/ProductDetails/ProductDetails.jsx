@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import RatingStars from "react-rating-stars-component";
 import Loader from "../../Layout/Loader/Loader";
+import MetaData from "../../Layout/MetaData";
 
 const SingleProduct = () => {
   // Collapse Options
@@ -22,6 +23,14 @@ const SingleProduct = () => {
   const { product, error, loading } = useSelector(
     (state) => state.productDetails
   );
+
+  // Setting the title
+  function getFirstThreeWords(str) {
+    let words = str.split(" ").slice(0, 3); // Split the string and get the first three words
+    let newStr = words.join(" "); // Join the words using whitespace as the separator
+    return newStr;
+  }
+
   // Redux Data
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -52,6 +61,9 @@ const SingleProduct = () => {
         <Loader />
       ) : (
         <div>
+          <MetaData
+            title={`${getFirstThreeWords(product.product.name)}  -- Ecommerce`}
+          />
           <div className="w-[100%] grid grid-cols-2 gap-4 justify-center  mb-[20px]">
             <Carousel>
               {product.product.images &&

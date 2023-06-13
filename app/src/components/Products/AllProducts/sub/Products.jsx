@@ -6,25 +6,31 @@ import Stack from "@mui/material/Stack";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+
 import {
   clearErrors,
   getProduct,
   getProductDetails,
 } from "../../../../redux/actions/productAction";
-
 import Loader from "../../../Layout/Loader/Loader";
 import Product from "../../../Home/sub/Product";
+import MetaData from "../../../Layout/MetaData";
 
 const Products = ({ price, category, ratingsArray }) => {
   // Passing Data
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
 
-  console.log(ratingsArray);
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
 
+  const handleErrors = () => {
+    toast.error(error, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
   const {
     products,
     loading,
@@ -36,9 +42,15 @@ const Products = ({ price, category, ratingsArray }) => {
 
   const { keyword } = useParams();
   useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      dispatch(clearErrors());
+    }
     dispatch(getProduct(keyword, currentPage, price, category, ratingsArray));
     dispatch(getProductDetails());
-  }, [dispatch, keyword, currentPage, price, category, ratingsArray]);
+  }, [dispatch, error, keyword, currentPage, price, category, ratingsArray]);
 
   return (
     <div>
@@ -46,6 +58,7 @@ const Products = ({ price, category, ratingsArray }) => {
         <Loader />
       ) : (
         <div className=" w-[855px] bg-[white]">
+          <MetaData title="Products -- Ecommerce" />
           <div className="px-[15px] w-[100%] flex justify-between items-center mb-[40px] text-[12px] font-[600]">
             <div className="total">
               <p className=" tracking-[0.75px]">

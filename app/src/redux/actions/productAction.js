@@ -21,10 +21,9 @@ export const getProduct =
   ) =>
   async (dispatch) => {
     try {
-      console.log(category, ratingsArray);
-
       dispatch({ type: ALL_PRODUCTS_REQUEST });
 
+      let url1 = `http://localhost:4000/api/v1/products?keyword=${keyword}`;
       let url = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratingsArray[0]}&ratings[lte]=${ratingsArray[1]}`;
 
       if (category == "all") {

@@ -25,7 +25,7 @@ const PopularProducts = React.forwardRef((props, ref) => {
     }
     dispatch(getProduct());
     dispatch(getProductDetails());
-  }, [dispatch, error, toast, alert]);
+  }, [dispatch, error, toast]);
 
   const options = {
     edit: false,

@@ -68,9 +68,9 @@ export default function Price({ newPrice }) {
   return (
     <Box sx={{ marginBottom: "20px" }}>
       <Typography gutterBottom style={{ marginBottom: "15px" }}>
-        <h3 className="mb-[15px] font-[700] text-[16px] text-blue-500">
+        <span className="mb-[15px] font-[700] text-[16px] text-blue-500">
           Price
-        </h3>
+        </span>
       </Typography>
       <IOSSlider
         style={{ marginLeft: "10px", marginRight: "10px", width: "210px" }}
