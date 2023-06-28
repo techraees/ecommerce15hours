@@ -15,23 +15,20 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please Enter your Email"],
     unique: true,
-    validate: [validator.isEmail, "Name should have more than 4 characters"],
+    // validate: [validator.isEmail, "Name should have more than 4 characters"],
   },
   password: {
     type: String,
     required: [true, "Please Enter your Password"],
-    minLength: [8, "Password should be greater than 8 characters"],
+    minLength: [4, "Password should be greater than 4 characters"],
     select: false,
   },
   avatar: {
-    public_id: {
-      type: String,
-      required: true,
+    type: {
+      public_id: String,
+      url: String,
     },
-    url: {
-      type: String,
-      required: true,
-    },
+    required: true,
   },
   role: {
     type: String,

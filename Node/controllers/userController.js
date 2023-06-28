@@ -5,18 +5,23 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail.js");
 const providingHTML = require("../utils/providingHTML");
 const crypto = require("crypto");
+const cloudinary = require("cloudinary");
 
 // Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
   const { name, email, password } = req.body;
-
   const user = await User.create({
     name,
     email,
     password,
     avatar: {
-      public_id: "This is a simple id",
-      url: "ProfilepicURL",
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
     },
   });
 
@@ -34,12 +39,12 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   }
 
   const user = await User.findOne({ email }).select("+password");
-
   if (!user) {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
 
   const isPasswordMatch = await user.comparePassword(password);
+  console.log(isPasswordMatch);
 
   if (!isPasswordMatch) {
     return next(new ErrorHandler("Invalid email or password", 401));

@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 
-import { Routes, Route, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import Logo from "../../../data/images/logo.svg";
 import Bag from "../../../data/images/bag.svg";
 import Heart from "../../../data/images/heart.svg";
 import User from "../../../data/images/user.svg";
 import Search from "./Search";
+import UserOptions from "./UserOptions";
+import { useSelector } from "react-redux";
 
-const Header = () => {
+const Header = ({ handleToggleSignup }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
 
+  console.log(user);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -38,7 +42,7 @@ const Header = () => {
     <div
       className={
         isScrolled
-          ? "bg-[white] sticky top-[0px] w-[100%] z-[900] shadow-[0px_5px_30px_rgba(0,0,0,0.15)] duration-500 "
+          ? "bg-[white] sticky top-[0px] w-[100%] z-[10] shadow-[0px_5px_30px_rgba(0,0,0,0.15)] duration-500 "
           : "bg-[white] sticky top-[0px] w-[100%] z-[900] duration-500"
       }
     >
@@ -68,7 +72,7 @@ const Header = () => {
               <Logo />
             </NavLink> */}
           </nav>
-          <div className="flex justify-end">
+          <div className="flex justify-end items-center">
             <div className="border-l-[1px] border-solid border-[#ebebeb] relative">
               <Search />
             </div>
@@ -90,14 +94,24 @@ const Header = () => {
                 />
               </NavLink>
             </div>
-            <div className="border-l-[1px] border-solid border-[#ebebeb] w-[90px] h-[85px]">
-              <NavLink to="user">
-                <img
-                  src={User}
-                  alt="Heart Icon"
-                  className="w-5 m-auto mt-[32.5px]"
-                />
-              </NavLink>
+            <div className=" flex justify-center border-l-[1px] border-solid border-[#ebebeb] w-[90px] h-[85px]">
+              {isAuthenticated ? (
+                <div className="mt-[10px]">
+                  <UserOptions user={user} />
+                </div>
+              ) : (
+                <NavLink
+                  to="/login"
+                  className="cursor-pointer"
+                  onClick={handleToggleSignup}
+                >
+                  <img
+                    src={User}
+                    alt="Heart Icon"
+                    className="w-5 m-auto mt-[32.5px]"
+                  />
+                </NavLink>
+              )}
             </div>
           </div>
         </div>

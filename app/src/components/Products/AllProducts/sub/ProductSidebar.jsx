@@ -37,8 +37,8 @@ const ProductSidebar = ({ parentFunc, categoryParentFunc, handleRatings }) => {
                 to="#"
                 className={
                   cate.toLowerCase() === category
-                    ? "text-[18px] mt-[105px] font-[600] text-[rgba(0,0,0,0.8)] leading-[1.5rem] duration-300"
-                    : "text-[14px] mt-[105px] font-[600]  text-[#787878] leading-[1.5rem] duration-300 hover:text-[18px]"
+                    ? "text-[18px] mt-[105px] font-[500] text-[rgba(0,0,0,0.8)] leading-[1.5rem] duration-300"
+                    : "text-[14px] mt-[105px] font-[300]  text-[#787878] leading-[1.5rem] duration-300 hover:text-[18px]"
                 }
                 onClick={() => handleActiveSendingCategory(cate.toLowerCase())}
               >
