@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
+import Backdrop from "@mui/material/Backdrop";
 
 const Search = () => {
   const navigate = useNavigate();
   const [isFocused, setIsFocused] = useState(false);
   const [keyword, setKeyword] = useState("");
+  const [open, setOpen] = React.useState(false);
+
   const handleFocus = () => {
     setIsFocused(true);
+    setOpen(true);
   };
   const handleBlur = () => {
     setIsFocused(false);
+    setOpen(false);
   };
   const searchSubmitHandler = (e) => {
     e.preventDefault();
@@ -24,11 +29,13 @@ const Search = () => {
   return (
     <>
       <form onSubmit={searchSubmitHandler}>
+        <Backdrop open={open} />
         <div
+          style={{ zIndex: "" }}
           className={
             isFocused
-              ? "h-[85px] w-[400px] duration-500 ease-in-out "
-              : "h-[85px] duration-500  ease-in-out w-[200px]"
+              ? "h-[85px] w-[400px] bg-[white] duration-500 ease-in-out relative"
+              : "h-[85px] duration-500 bg-[white] ease-in-out w-[200px] relative"
           }
         >
           <button type="submit">

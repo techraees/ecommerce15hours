@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "../../../data/images/profile.png";
+import Profile from "../../../fdata/images/profile.png";
 import RatingsStars from "react-rating-stars-component";
 import Tooltip from "@mui/material/Tooltip";
 

@@ -1,10 +1,10 @@
 import React from "react";
-import topshop from "../../../data/images/topshop.webp";
-import mango from "../../../data/images/Mango.webp";
-import zara from "../../../data/images/zara.webp";
-import bershka from "../../../data/images/bershka.webp";
-import asos from "../../../data/images/asos.webp";
-import riverIsland from "../../../data/images/river island.webp";
+import topshop from "../../../fdata/images/topshop.webp";
+import mango from "../../../fdata/images/Mango.webp";
+import zara from "../../../fdata/images/zara.webp";
+import bershka from "../../../fdata/images/bershka.webp";
+import asos from "../../../fdata/images/asos.webp";
+import riverIsland from "../../../fdata/images/river island.webp";
 
 const Brand = () => {
   return (

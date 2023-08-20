@@ -1,4 +1,3 @@
-
 // Creating token and adding cookie variable
 
 const sendToken = (user, statusCode, res) => {
@@ -12,12 +11,11 @@ const sendToken = (user, statusCode, res) => {
     httpOnly: true,
   };
 
-  res.status(statusCode).cookie("token",token,options).json({
-    success:true,
+  res.status(statusCode).cookie("token", token, options).json({
+    success: true,
     user,
     token,
-  })
+  });
 };
 
-
-module.exports = sendToken
+module.exports = sendToken;

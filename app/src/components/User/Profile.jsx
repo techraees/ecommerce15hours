@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import Box from "@mui/material/Box";
 
-import ProfilePhoto from "../../data/images/profile.png";
+import ProfilePhoto from "../../fdata/images/profile.png";
 import OrdersHistory from "./OrdersHistory";
 import ProfileDetails from "./ProfileDetails";
 import PaymentsDetails from "./PaymentsDetails";
 import GiftCards from "./GiftCards";
 import Loader from "../Layout/Loader/Loader";
 
+import "./profile.css";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
+import { Button } from "@mui/material";
 
 const Profile = () => {
   // Redux Data
@@ -17,6 +21,7 @@ const Profile = () => {
   const { name, email, role, avatar, _id } = user;
   const [activeId, setActiveId] = useState("personal");
   const [isLoading, setLoading] = useState(true);
+  const [borderValue, setBorderValue] = useState(false);
 
   const handleDetail = (e) => {
     const clickedId = e.target.id;
@@ -32,15 +37,12 @@ const Profile = () => {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [isLoading]);
+  }, [isLoading, user]);
 
-  useEffect(() => {
-    console.log(user);
-  }, []);
   const renderContent = () => {
     switch (activeId) {
       case "personal":
-        return <ProfileDetails user={user} />;
+        return <ProfileDetails borderValue={borderValue} />;
       case "billing":
         return <PaymentsDetails />;
       case "order":
@@ -65,14 +67,23 @@ const Profile = () => {
       <div className="mb-[20px] grid grid-cols-3 gap-4">
         <div>
           <div>
-            <div>
+            <div className="">
               <img
                 src={avatar.url}
                 alt={avatar.public_id}
                 width="100%"
-                className="w-[200px] h-[200px] opacity-40 rounded-full"
+                className="w-[200px] h-[200px] rounded-full mb-[10px]"
               />
+              <div
+                className="top-[153px] rounded-full cursor-pointer w-[50%] mb-[10px] text-white p-1 font-[500] text-center bg-blue-500 duration-200 hover:bg-blue-800"
+                onClick={() => setBorderValue(!borderValue)}
+              >
+                <Box component="span" sx={{ p: 2 }}>
+                  Change Photo
+                </Box>
+              </div>
             </div>
+
             <h2 className="font-[700] text-[24px] mb-[8px]">{name}</h2>
             <p
               className="text-[#9c9c9c] mb-[48px]"
@@ -82,28 +93,44 @@ const Profile = () => {
             </p>
             <ul className="font-[700] text-[24px] text-[#9c9c9c]">
               <li
-                className="mb-[13px] text-[dodgerBlue] cursor-pointer "
+                className={
+                  activeId === "personal"
+                    ? "mb-[13px] text-[dodgerBlue]  cursor-pointer"
+                    : "mb-[13px] cursor-pointer"
+                }
                 id="personal"
                 onClick={(e) => handleDetail(e)}
               >
                 Personal information
               </li>
               <li
-                className="mb-[13px] cursor-pointer "
+                className={
+                  activeId === "billing"
+                    ? "mb-[13px] text-[dodgerBlue]  cursor-pointer"
+                    : "mb-[13px] cursor-pointer"
+                }
                 onClick={(e) => handleDetail(e)}
                 id="billing"
               >
                 Billing & Payments
               </li>
               <li
-                className="mb-[13px] cursor-pointer "
+                className={
+                  activeId === "order"
+                    ? "mb-[13px] text-[dodgerBlue]  cursor-pointer"
+                    : "mb-[13px] cursor-pointer"
+                }
                 onClick={(e) => handleDetail(e)}
                 id="order"
               >
                 Order History
               </li>
               <li
-                className="mb-[13px] cursor-pointer "
+                className={
+                  activeId === "gifts"
+                    ? "mb-[13px] text-[dodgerBlue]  cursor-pointer"
+                    : "mb-[13px] cursor-pointer"
+                }
                 onClick={(e) => handleDetail(e)}
                 id="gifts"
               >

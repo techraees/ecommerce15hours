@@ -40,16 +40,15 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 
   const user = await User.findOne({ email }).select("+password");
   if (!user) {
-    return next(new ErrorHandler("Invalid email or password", 401));
+    return next(new ErrorHandler("Your email is not present", 401));
   }
 
   const isPasswordMatch = await user.comparePassword(password);
   console.log(isPasswordMatch);
 
   if (!isPasswordMatch) {
-    return next(new ErrorHandler("Invalid email or password", 401));
+    return next(new ErrorHandler("Password is incorrect", 401));
   }
-
   sendToken(user, 200, res);
 });
 
@@ -84,6 +83,39 @@ exports.forgetPassword = catchAsyncErrors(async (req, res, next) => {
   )}/api/v1/password/reset/${resetToken}`;
 
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then please ignore it.`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: `Ecommerce Password Recovery`,
+      message,
+      html: providingHTML({
+        name: "Raees",
+        email: user.email,
+        message: "Its pleasure to meet you bro I am Lucky!",
+      }),
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `Email sent to ${user.email} successfully`,
+    });
+  } catch (error) {
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save({ validateBeforeSave: false });
+
+    return next(new ErrorHandler(error.message, 500));
+  }
+});
+// Forget Password
+exports.forgetPasswordWithTwilio = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.email });
+
+  if (!user) {
+    return next(new ErrorHandler("User Not Found", 404));
+  }
 
   try {
     await sendEmail({
@@ -179,13 +211,15 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
 // Update User Profile
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+  console.log("This is running well");
   const newUserData = {
     name: req.body.name,
     email: req.body.email,
   };
 
   // We will add cloudinary Later
-
+  const user1 = await User.findById(req.user.id);
+  console.log(user1);
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,

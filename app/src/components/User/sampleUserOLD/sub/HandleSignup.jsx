@@ -74,21 +74,22 @@ const HandleSignup = () => {
       // reader.readAsDataURL(e.target.files[0]);
 
       try {
-        ImageResizer.imageFileResizer(
-          e.target.files[0],
-          200,
-          200,
-          "JPEG",
-          100,
-          0,
-          (uri) => {
-            setAvatar(uri);
-            setAvatarPreview(uri);
-          },
-          "base64",
-          400,
-          50
-        );
+        // ImageResizer.imageFileResizer(
+        //   e.target.files[0],
+        //   200,
+        //   200,
+        //   "JPEG",
+        //   100,
+        //   0,
+        //   (uri) => {
+        //     setAvatar(uri);
+        //     setAvatarPreview(uri);
+        //   },
+        //   "base64",
+        //   400,
+        //   50
+        // );
+        setAvatar(e.target.files[0]);
       } catch (error) {
         throw new Error(error);
       }

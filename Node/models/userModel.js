@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please Enter your Email"],
     unique: true,
-    // validate: [validator.isEmail, "Name should have more than 4 characters"],
+    validate: [validator.isEmail, "Name should have more than 4 characters"],
   },
   password: {
     type: String,
@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     default: "user",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
   },
   resetPasswordToken: String,
   resetPasswordExpire: Date,

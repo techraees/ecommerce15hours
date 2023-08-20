@@ -25,6 +25,7 @@ export const getProduct =
 
       let url1 = `/api/v1/products?keyword=${keyword}`;
       let url = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratingsArray[0]}&ratings[lte]=${ratingsArray[1]}`;
+      console.log(url);
 
       if (category == "all") {
         url = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratingsArray[0]}&ratings[lte]=${ratingsArray[1]}`;

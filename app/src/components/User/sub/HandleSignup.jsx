@@ -17,12 +17,12 @@ import Cookies from "js-cookie";
 
 import "./user.css";
 import ImgIcon from "./ImgIcon";
-import GoogleImg from "../../../data/images/google.svg";
-import FacebookImg from "../../../data/images/facebook.svg";
-import GithubImg from "../../../data/images/Github.svg";
-import MicrosoftImg from "../../../data/images/microsoft.svg";
-import AppleImg from "../../../data/images/apple.svg";
-import Profile from "../../../data/images/profile.png";
+import GoogleImg from "../../../fdata/images/google.svg";
+import FacebookImg from "../../../fdata/images/facebook.svg";
+import GithubImg from "../../../fdata/images/Github.svg";
+import MicrosoftImg from "../../../fdata/images/microsoft.svg";
+import AppleImg from "../../../fdata/images/apple.svg";
+import Profile from "../../../fdata/images/profile.png";
 import SocialButton from "./ImgIcon";
 import Loader from "../../Layout/Loader/Loader";
 
@@ -63,6 +63,7 @@ const HandleSignup = () => {
     myForm.set("password", name);
     myForm.set("avatar", avatar);
     dispatch(register(myForm));
+    navigate("/account");
   };
 
   const registerDataChange = async (e) => {

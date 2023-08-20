@@ -25,6 +25,13 @@ import { useDispatch } from "react-redux";
 export default function AccountMenu({ user }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [backOpen, setBackOpen] = React.useState(false);
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
   // Options for doing this activity
   const options = [
     {
@@ -68,20 +75,20 @@ export default function AccountMenu({ user }) {
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setBackOpen(true);
   };
   const handleClose = () => {
     setAnchorEl(null);
+    setBackOpen(false);
   };
   return (
     <React.Fragment>
-      <Backdrop open={open} style={{ zIndex: "" }} />
-      <Box
-        sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
-        open={open}
-      >
+      <Backdrop open={backOpen} style={{ zIndex: "" }} />
+      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Tooltip title="Profile">
           <IconButton
-            onClick={handleClick}
+            onMouseEnter={handleClick}
+            // onMouseLeave={handleClose}
             size="small"
             sx={{ ml: 2 }}
             aria-controls={open ? "account-menu" : undefined}
@@ -111,7 +118,7 @@ export default function AccountMenu({ user }) {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
+        onMouseLeave={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {

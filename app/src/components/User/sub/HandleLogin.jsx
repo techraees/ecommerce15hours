@@ -7,11 +7,11 @@ import { clearErrors, login } from "../../../redux/actions/userAction";
 import { toast } from "react-toastify";
 
 import ImgIcon from "./ImgIcon";
-import GoogleImg from "../../../data/images/google.svg";
-import FacebookImg from "../../../data/images/facebook.svg";
-import GithubImg from "../../../data/images/Github.svg";
-import MicrosoftImg from "../../../data/images/microsoft.svg";
-import AppleImg from "../../../data/images/apple.svg";
+import GoogleImg from "../../../fdata/images/google.svg";
+import FacebookImg from "../../../fdata/images/facebook.svg";
+import GithubImg from "../../../fdata/images/Github.svg";
+import MicrosoftImg from "../../../fdata/images/microsoft.svg";
+import AppleImg from "../../../fdata/images/apple.svg";
 import Loader from "../../Layout/Loader/Loader";
 
 const Login = () => {
@@ -40,8 +40,9 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log(user);
+    console.log(error, "frontend");
     if (error) {
+      console.log(error);
       toast.error(error, {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 3000,
@@ -60,7 +61,8 @@ const Login = () => {
       });
       dispatch(clearErrors());
     }
-    if (user && user !== undefined) {
+    if (user && Object.keys(user).length > 0) {
+      console.log(user);
       const name = user.name;
       toast.success(`Welcome Back ${name}!`, {
         position: toast.POSITION.TOP_RIGHT,

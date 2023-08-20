@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import "./sub/user.css";
-import video from "../../data/images/backgroundVideo.mp4";
+import video from "../../fdata/images/backgroundVideo.mp4";
 import HandleLogin from "./sub/HandleLogin";
 import HandleSignup from "./sub/HandleSignup";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Signup = ({ stateValue }) => {
   const [showSignup, setShowSignup] = useState(false);
@@ -40,6 +42,12 @@ const Signup = ({ stateValue }) => {
   return (
     <div className="">
       <div className="fixed top-[0px]  w-[30%] z-[10000] bg-[white] h-screen overflow-y-auto ">
+        <Link
+          to="/"
+          className="fixed top-[20px] right-[30px] hover:bg-black duration-300 "
+        >
+          <Button>Back</Button>
+        </Link>
         <div className="flex  text-center  w-full text-[#999] text-[18px]">
           <div
             onClick={() => {

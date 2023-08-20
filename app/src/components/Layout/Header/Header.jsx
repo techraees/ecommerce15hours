@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 
 import { NavLink } from "react-router-dom";
 
-import Logo from "../../../data/images/logo.svg";
-import Bag from "../../../data/images/bag.svg";
-import Heart from "../../../data/images/heart.svg";
-import User from "../../../data/images/user.svg";
+import Logo from "../../../fdata/images/logo.svg";
+import Bag from "../../../fdata/images/bag.svg";
+import Heart from "../../../fdata/images/heart.svg";
+import User from "../../../fdata/images/user.svg";
 import Search from "./Search";
 import UserOptions from "./UserOptions";
 import { useSelector } from "react-redux";
@@ -14,7 +14,6 @@ const Header = ({ handleToggleSignup }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  console.log(user);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -96,7 +95,7 @@ const Header = ({ handleToggleSignup }) => {
             </div>
             <div className=" flex justify-center border-l-[1px] border-solid border-[#ebebeb] w-[90px] h-[85px]">
               {isAuthenticated ? (
-                <div className="mt-[10px]">
+                <div className="self-center">
                   <UserOptions user={user} />
                 </div>
               ) : (

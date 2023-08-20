@@ -9,29 +9,41 @@ body{
     font-family: 'Ubuntu';
 }
 .heroBackground {
-    background-image: url('./data/images/hero.webp');
+    background-image: url('./fdata/images/hero.webp');
     background-repeat: no-repeat;
     background-size: cover;
 }
 .clothing {
-    background-image: url('./data/images/clothing.webp');
+    background-image: url('./fdata/images/clothing.webp');
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
 
 .shoes {
-    background-image: url('./data/images/shoes.webp');
+    background-image: url('./fdata/images/shoes.webp');
     background-repeat: no-repeat;
     background-size: cover;
 }
 .accessories {
-    background-image: url('./data/images/accessories.webp');
+    background-image: url('./fdata/images/accessories.webp');
     background-repeat: no-repeat;
     background-size: cover;
 }
 .sales{
-    background-image: url('./data/images/sales.webp');
+    background-image: url('./fdata/images/sales.webp');
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+
+body{
+    margin: 0;
+    padding:0;
+    font-family: "Open Sans", sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

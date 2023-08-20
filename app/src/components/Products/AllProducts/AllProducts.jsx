@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Product.css";
-import img from "../../../data/images/filterBackground.webp";
+import img from "../../../fdata/images/filterBackground.webp";
 import ProductSidebar from "./sub/ProductSidebar.jsx";
 import Products from "./sub/Products.jsx";
 

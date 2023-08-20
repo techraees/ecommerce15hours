@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import WebFont from "webfontloader";
 import { ToastContainer } from "react-toastify";
@@ -11,19 +11,24 @@ import AllProducts from "./components/Products/AllProducts/AllProducts";
 import ProductDetails from "./components/Products/ProductDetails/ProductDetails";
 import ScrollButton from "./components/Home/ScrollButton";
 import UserOptions from "./components/Layout/Header/UserOptions";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 import "./App.css";
 import UserAuth from "./components/User/UserAuth";
+import HandleLogin from "./components/User/sub/HandleLogin";
 import Profile from "./components/User/Profile";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import store from "./store";
 import { loadUser } from "./redux/actions/userAction";
 import { useSelector } from "react-redux";
+import ForgetWithTwilio from "./components/User/ForgetWithTwilio";
 
 function App() {
+  const location = useLocation();
+  const isDashboardPath = location.pathname.startsWith("/dashboard");
+
   // Handling Signup ture/false value
   const [showSignup, setShowSignup] = useState(false);
-  console.log(showSignup);
   const handleToggleSignup = () => {
     setShowSignup(!showSignup);
   };
@@ -36,19 +41,25 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Header handleToggleSignup={handleToggleSignup} />
+      {!isDashboardPath && <Header handleToggleSignup={handleToggleSignup} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/products/" element={<AllProducts />} />
         <Route path="/products/:keyword" element={<AllProducts />} />
+        <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/login" element={<UserAuth stateValue={showSignup} />} />
-        <Route path="/account" element={<Profile />} />
+        <Route path="/forgetwithsms" element={<ForgetWithTwilio />} />
+
+        {/* Protected Routes */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/account" element={<Profile />} exact />
+        </Route>
       </Routes>
 
-      <Footer />
+      {!isDashboardPath && <Footer />}
       <ToastContainer />
-      <ScrollButton />
+      {!isDashboardPath && <ScrollButton />}
     </div>
   );
 }
